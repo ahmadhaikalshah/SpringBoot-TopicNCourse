@@ -14,9 +14,9 @@ public class CourseService {
 	@Autowired
 	private CourseRepository courseRepository;
 	
-	public List<Course> getAllCourses(Integer topicId) {
+	public List<Course> getAllCourses(Integer topicId, Pageable page) {
 		List<Course> courses = new ArrayList<>();
-		courseRepository.findByTopicId(topicId).forEach(courses::add);
+		courseRepository.findByTopicId(topicId, page).forEach(courses::add);
 		return courses;
 	}
 	 

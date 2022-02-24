@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,8 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@RequestMapping("/topics/{id}/courses")
-	public List<Course> getAllCourses(@PathVariable Integer id) {
-		return courseService.getAllCourses(id);
+	public List<Course> getAllCourses(@PathVariable Integer id, @PageableDefault(size = 5,sort = "name", direction = Direction.DESC) Pageable topicPage) {
+		return courseService.getAllCourses(id, topicPage);
 		
 	}
 	
